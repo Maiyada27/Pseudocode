@@ -105,9 +105,6 @@ CLASS EXAMINATION
 	GET_TREATMENT_NAME() 
 	 DISPLAY TREATMENT_NAME 
 	END METHOD 
-	SET_TOTAL_COST(0) 
-	 SET TOTAL_COST TO 0 
-	END METHOD
 	SET_TREATMENT_COST(COST : AMOUNT) 
 	 SET TREATMENT_COST TO COST 
 	END METHOD
@@ -119,11 +116,49 @@ START
 	CREATE OBJECT emxamination_1 of EXAMINATION("Temp:39.5, bpm: 190", "Infection",["Antibiotic"]) 
 	CREATE OBJECT treatment_1 of TREATMENT("Antibiotics", 14)
 	
-	owner_1.addPET(pet_1) 
-	pet_1.addMEDICAL_HISTORY("Treated for infection")
-	examination_1.addTREATMENT(treatment_1)
+	owner_1.ADD_PET(pet_1) 
+	pet_1.ADD_MEDICAL_HISTORY("Treated for infection")
+	examination_1.ADD_TREATMENT(treatment_1)
+	
+	owner_1.ADD_PETS(New_pet : pet)
+	 ADD NEW_PET TO LIST PETS  
+	DISPLAY "Updated List of pets:" + owner1.get_PETS()
+	
+	owner_1.ADD_REMOVE_PETS(OLD_PET : PET)
+	 REPEAT FROM I=1 TO SIZE OF LIST PETS 
+	  IF PETS[I] EQUALS OLD_PET THEN  
+	  REMOVE OLD_PET FROM LIST PETS
+	  ELSE 
+	  DISPLAY "PET NOT FOUND"
+	  END IF 
+	 END REPEAT 
+	
+	pet_1.GET_MEDICAL_HISTORY() 
+	 DISPLAY "Medical history of " + pet_1.GET_PET_NAME() +" : " + pet_1.GET_MEDICAL_HISTORY
+	
+	emxamination_1.GET_VITAL_SIGNS() 
+	 DISPLAY "Vital signs: " +  GET_VITAL_SIGNS()
+	
+	emxamination_1.GET_DIAGNOSIS() 
+	 DISPLAY "Diagnosis: " + emxamination_1.GET_DIAGNOSIS()
+	 
+	emxamination_1.ADD_TREATMENT(PRESCRIPTION : MEDICINE) 
+	 ADD PRESCRIPTION TO LIST TREATMENT 
+	 DISPLAY "Prescribed treatment: " + emxamination_1.GET_TREATMENT() 	
+
+	treatment_1.ADD_TREATMENT_COST(COST : AMOUNT) 
+	 SET TREATMENT_COST TO COST 
+	 DISPLAY "Cost of" + treatment_1.GET_TREATMENT_NAME()
      END 
-  STOP
+  STOP 
+	
+	
+	
+	
+
+	
+	
+	
   
 		
 	
