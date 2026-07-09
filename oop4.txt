@@ -611,7 +611,7 @@ START
    BEGIN 
 	CREATE OBJECT trainer1 OF TRAINER("Fay Said")
 	CREATE OBJECT client1 OF CLIENT( "Sara", "9911223") 
-	CREATE OBJECT session1 OD SESSION("16:30", "11-8-2026", 60, "Pilates", trainer1, client1) 
+	CREATE OBJECT session1 OF SESSION("16:30", "11-8-2026", 60, "Pilates", trainer1, client1) 
 
 	session1.MAKE_BOOKING()
 
